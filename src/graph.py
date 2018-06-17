@@ -24,10 +24,16 @@ class Graph():
         if name in self.container:
             raise ValueError("Name already exists!")
         self.container[name] = dict()
-        for node in self.container:
-            if node != name:
-                self.container[node][name] = 0.0
-                self.container[name][node] = 0.0
+
+    def add_edge(self, start: str, end: str, weight: float=0.0):
+        """
+        Add a new edge from start to end, optionally with the given weight.
+        """
+        if start not in self.container:
+            raise ValueError("The provided start node does not exist!")
+        if end not in self.container:
+            raise ValueError("The provided end node does not exist!")
+        self.container[start][end] = weight
 
     def add_weight(self, start: str, end: str, amount: float):
         """
