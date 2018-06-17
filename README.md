@@ -1,5 +1,8 @@
 # EvenSplit
 
+[![Build Status](https://travis-ci.org/jhbell/even-split.svg?branch=master)](https://travis-ci.org/jhbell/even-split)
+[![Coverage Status](https://coveralls.io/repos/github/jhbell/even-split/badge.svg?branch=master)](https://coveralls.io/github/jhbell/even-split?branch=master)
+
 Find the easiest way to pay everyone back using EvenSplit. EvenSplit will take
 into account how much each person has paid, and figure out how to make
 everyone square again.
