@@ -1,6 +1,6 @@
 class Graph():
     """
-    The graph data structure for storing people and their transactions
+    The graph data structure for storing people and their transactions.
     """
     def __init__(self):
         """
@@ -15,11 +15,30 @@ class Graph():
         """
         return len(self.container)
 
-    def add_person(self, name: str):
+    def add_node(self, name: str):
         """
         Add a new person to the graph. This is equivalent to adding
-        a new node.
+        a new node. This node will be connected to all other nodes by an
+        edge with weight zero.
         """
         if name in self.container:
             raise ValueError("Name already exists!")
-        self.container[name] = []
+        self.container[name] = dict()
+        for node in self.container:
+            if node != name:
+                self.container[node][name] = 0.0
+                self.container[name][node] = 0.0
+
+    def add_weight(self, start: str, end: str, amount: float):
+        """
+        Add weight to the edge that goes from start to end.
+        """
+        self.container[start][end] = self.container[start][end] + amount
+
+    def __str__(self):
+        """
+        Print the contents of the graph. This prints the contents of
+        self.container
+        """
+        return str(self.container)
+
