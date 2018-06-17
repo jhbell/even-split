@@ -127,6 +127,52 @@ class TestGraph(unittest.TestCase):
             g.get_weight("A", "B")
         self.assertIn("edge", str(context.exception))
 
+    def test_set_weight(self):
+        """
+        Test setting the weight of an edge between two nodes.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        g.add_edge("B", "A")
+        self.assertEqual(g.get_weight("B", "A"), 0.0)
+        g.set_weight("B", "A", 123.45)
+        self.assertEqual(g.get_weight("B", "A"), 123.45)
+
+    def test_set_weight_invalid_start(self):
+        """
+        Test setting the weight of an edge where the start node does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.set_weight("C", "B", 20.00)
+        self.assertIn("start", str(context.exception))
+
+    def test_set_weight_invalid_end(self):
+        """
+        Test setting the weight of an edge where the end node does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.set_weight("A", "C", 44.43)
+        self.assertIn("end", str(context.exception))
+
+    def test_set_weight_no_edge(self):
+        """
+        Test setting the weight of an edge that does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.set_weight("A", "B", 1.51)
+        self.assertIn("edge", str(context.exception))
+
+
     def test_add_weight(self):
         """
         Test updating the weight of an edge between two nodes.

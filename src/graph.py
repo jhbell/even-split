@@ -48,6 +48,19 @@ class Graph():
                     "There is no edge from {} to {}".format(start, end))
         return self.container[start][end]
 
+    def set_weight(self, start: str, end: str, weight: float):
+        """
+        Set the weight of an edge going from start to end.
+        """
+        if start not in self.container:
+            raise ValueError("The provided start node does not exist!")
+        if end not in self.container:
+            raise ValueError("The provided end node does not exist!")
+        if end not in self.container[start]:
+            raise ValueError(
+                    "There is no edge from {} to {}".format(start, end))
+        self.container[start][end] = weight
+
     def add_weight(self, start: str, end: str, amount: float):
         """
         Add weight to the edge that goes from start to end.
