@@ -1,7 +1,7 @@
+import unittest
 from src.divide import divide
-from unittest import TestCase
 
-class TestDivide(TestCase):
+class TestDivide(unittest.TestCase):
     """
     Test the divide function located in src/divide.py
     """

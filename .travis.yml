@@ -1,6 +1,10 @@
 language: python
 python:
   - "3.6"
+install:
+  - make install
 # Run the tests
 script:
   - make test
+after_success:
+  - coveralls
