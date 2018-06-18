@@ -1,3 +1,5 @@
+import pprint
+
 class Graph():
     """
     The graph data structure for storing people and their transactions.
@@ -39,32 +41,21 @@ class Graph():
         """
         Get the weight of the edge from start to end.
         """
-        if start not in self.container:
-            raise ValueError("The provided start node does not exist!")
-        if end not in self.container:
-            raise ValueError("The provided end node does not exist!")
-        if end not in self.container[start]:
-            raise ValueError(
-                    "There is no edge from {} to {}".format(start, end))
+        self.check_edge(start, end)
         return self.container[start][end]
 
     def set_weight(self, start: str, end: str, weight: float):
         """
         Set the weight of an edge going from start to end.
         """
-        if start not in self.container:
-            raise ValueError("The provided start node does not exist!")
-        if end not in self.container:
-            raise ValueError("The provided end node does not exist!")
-        if end not in self.container[start]:
-            raise ValueError(
-                    "There is no edge from {} to {}".format(start, end))
+        self.check_edge(start, end)
         self.container[start][end] = weight
 
     def add_weight(self, start: str, end: str, amount: float):
         """
         Add weight to the edge that goes from start to end.
         """
+        self.check_edge(start, end)
         self.container[start][end] = self.container[start][end] + amount
 
     def __str__(self):
@@ -73,4 +64,24 @@ class Graph():
         self.container
         """
         return str(self.container)
+
+    def __repr__(self):
+        """
+        Print the contents of the graph in human readble format. This is the
+        same as using the dict __repr__.
+        """
+        return repr(self.container)
+
+    def check_edge(self, start: str, end: str):
+        """
+        Check that both nodes provided exist, and that there is an edge from
+        start to end. Throws a ValueError if any of these fail.
+        """
+        if start not in self.container:
+            raise ValueError("The provided start node does not exist!")
+        if end not in self.container:
+            raise ValueError("The provided end node does not exist!")
+        if end not in self.container[start]:
+            raise ValueError(
+                    "There is no edge from {} to {}".format(start, end))
 

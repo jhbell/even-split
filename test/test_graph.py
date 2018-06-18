@@ -28,6 +28,17 @@ class TestGraph(unittest.TestCase):
         g.add_node("B")
         g.add_node("C")
         self.assertEqual(str(g), correct)
+
+    def test_repr(self):
+        """
+        Test the correctness of the __repr__ function.
+        """
+        correct = "{'A': {}, 'B': {}, 'C': {}}"
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        g.add_node("C")
+        self.assertEqual(repr(g), correct)
         
     def test_add_node_duplicate(self):
         """
@@ -185,4 +196,35 @@ class TestGraph(unittest.TestCase):
         g.add_weight("A", "B", 3.14)
         self.assertEqual(str(g), correct)
 
+    def test_add_weight_invalid_start(self):
+        """
+        Test addting the weight of an edge where the start node does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.add_weight("C", "B", 20.00)
+        self.assertIn("start", str(context.exception))
 
+    def test_add_weight_invalid_end(self):
+        """
+        Test addting the weight of an edge where the end node does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.add_weight("A", "C", 44.43)
+        self.assertIn("end", str(context.exception))
+
+    def test_add_weight_no_edge(self):
+        """
+        Test addting the weight of an edge that does not exist.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        with self.assertRaises(ValueError) as context:
+            g.add_weight("A", "B", 1.51)
+        self.assertIn("edge", str(context.exception))
