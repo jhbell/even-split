@@ -10,6 +10,27 @@ class Graph():
         """
         self.container = dict()
 
+    def __str__(self):
+        """
+        Print the contents of the graph. This prints the contents of
+        self.container
+        """
+        return str(self.container)
+
+    def __repr__(self):
+        """
+        Print the contents of the graph in human readble format. This is the
+        same as using the dict __repr__.
+        """
+        return repr(self.container)
+
+    def __iter__(self):
+        """
+        Return an iterator for this graph. The iterator returns the keys of
+        the internal container for the graph.
+        """
+        return iter(self.container)
+
     def size(self):
         """
         Return the number of people in the graph. This is equivalent to
@@ -57,20 +78,6 @@ class Graph():
         """
         self.check_edge(start, end)
         self.container[start][end] = self.container[start][end] + amount
-
-    def __str__(self):
-        """
-        Print the contents of the graph. This prints the contents of
-        self.container
-        """
-        return str(self.container)
-
-    def __repr__(self):
-        """
-        Print the contents of the graph in human readble format. This is the
-        same as using the dict __repr__.
-        """
-        return repr(self.container)
 
     def check_edge(self, start: str, end: str):
         """

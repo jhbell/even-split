@@ -228,3 +228,20 @@ class TestGraph(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             g.add_weight("A", "B", 1.51)
         self.assertIn("edge", str(context.exception))
+
+    def test_iter(self):
+        """
+        Test iteration over the graph. This should iterate over the nodes
+        of the graph.
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        g.add_node("C")
+        g.add_node("D")
+        i = iter(g)
+        self.assertEqual(next(i), "A")
+        self.assertEqual(next(i), "B")
+        self.assertEqual(next(i), "C")
+        self.assertEqual(next(i), "D")
+
