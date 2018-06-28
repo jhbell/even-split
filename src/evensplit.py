@@ -40,6 +40,15 @@ class EvenSplit():
                 self.graph.add_edge(name, person)
                 self.graph.add_edge(person, name)
 
+    def add_transaction(self, name: str, amount: float):
+        """
+        Add a transaction and evenly split the amount across all people.
+        """
+        split_amount = amount / self.count()
+        for person in self.graph:
+            if person != name:
+                self.graph.add_weight(person, name, split_amount)
+
     def count(self):
         """
         Return the number of people in the graph.
