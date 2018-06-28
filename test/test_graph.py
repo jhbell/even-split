@@ -95,6 +95,21 @@ class TestGraph(unittest.TestCase):
             g.add_edge("A", "C")
         self.assertIn("end", str(context.exception))
 
+    def test_getitem(self):
+        """
+        Test using the __getitem__ method which is accessed using [].
+        """
+        g = Graph()
+        g.add_node("A")
+        g.add_node("B")
+        g.add_node("C")
+        g.add_edge("B", "C", 1.0)
+        g.add_edge("B", "A", 2.0)
+        g.add_edge("A", "C")
+        self.assertEqual(str(g["A"]), "{'C': 0.0}")
+        self.assertEqual(str(g["B"]), "{'C': 1.0, 'A': 2.0}")
+        self.assertEqual(str(g["C"]), "{}")
+
     def test_get_weight(self):
         """
         Test getting the weight of an edge between two nodes.

@@ -31,6 +31,12 @@ class Graph():
         """
         return iter(self.container)
 
+    def __getitem__(self, start):
+        """
+        Return the outgoing edges from the given start node.
+        """
+        return self.container[start]
+
     def size(self):
         """
         Return the number of people in the graph. This is equivalent to
