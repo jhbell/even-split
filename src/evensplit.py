@@ -1,3 +1,5 @@
+from typing import IO
+from sys import stdin
 from src.graph import Graph
 
 class EvenSplit():
@@ -54,3 +56,14 @@ class EvenSplit():
         Return the number of people in the graph.
         """
         return self.graph.size()
+
+    def print(self, out: IO[str]=stdin):
+        """
+        Print the state of the split as transactions from one 
+        person to another.
+        """
+        out.write("Here's how to get even:\n")
+        for person in self.graph:
+            for other in self.graph[person]:
+                amount = "${:,.2f}".format(self.graph[person][other])
+                out.write(person + " pays " +  other + " " + amount + "\n")

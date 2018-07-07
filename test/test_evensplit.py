@@ -1,4 +1,5 @@
 import unittest
+from io import StringIO
 from src.evensplit import EvenSplit
 
 class TestEvenSplit(unittest.TestCase):
@@ -64,4 +65,16 @@ class TestEvenSplit(unittest.TestCase):
         es.add_person("Sara")
         self.assertEqual(repr(es), correct)
 
-
+    def test_print(self):
+        """
+        Test the correctness of the print function.
+        """
+        correct = ("Here's how to get even:\nJohn pays Sara $2.00\n"
+                   "Sara pays John $0.00\n")
+        w = StringIO()
+        es = EvenSplit()
+        es.add_person("John")
+        es.add_person("Sara")
+        es.add_transaction("Sara", 4.00)
+        es.print(w)
+        self.assertEqual(w.getvalue(), correct)
