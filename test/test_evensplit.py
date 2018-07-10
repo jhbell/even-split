@@ -1,3 +1,7 @@
+"""
+Test module for evensplit.evensplit.
+"""
+
 import unittest
 from io import StringIO
 from src.evensplit import EvenSplit
@@ -7,6 +11,7 @@ class TestEvenSplit(unittest.TestCase):
     Test the EvenSplit program which actually divides up payments and produces
     a result.
     """
+
     def test_add_person(self):
         """
         Test that people are added properly to the internal graph.
@@ -27,7 +32,7 @@ class TestEvenSplit(unittest.TestCase):
         with self.assertRaises(ValueError):
             es.add_person(None)
 
-    def test_add_transaction_even_simple(self):
+    def test_add_transaction_simple(self):
         """
         Test a successful add of a evenly split transaction.
         """
@@ -53,7 +58,6 @@ class TestEvenSplit(unittest.TestCase):
         es.add_person("Anne")
         es.add_transaction("Sara", 14.00)
         self.assertEqual(str(es), correct)
-
 
     def test_repr(self):
         """

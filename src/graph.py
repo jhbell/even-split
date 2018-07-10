@@ -1,9 +1,13 @@
-import pprint
+"""
+A module containing a graph data structure.
+"""
+
 
 class Graph():
     """
     The graph data structure for storing people and their transactions.
     """
+
     def __init__(self):
         """
         Construct a new graph using a dict as a container.
@@ -54,7 +58,7 @@ class Graph():
             raise ValueError("Name already exists!")
         self.container[name] = dict()
 
-    def add_edge(self, start: str, end: str, weight: float=0.0):
+    def add_edge(self, start: str, end: str, weight: float = 0.0):
         """
         Add a new edge from start to end, optionally with the given weight.
         """
@@ -96,5 +100,4 @@ class Graph():
             raise ValueError("The provided end node does not exist!")
         if end not in self.container[start]:
             raise ValueError(
-                    "There is no edge from {} to {}".format(start, end))
-
+                "There is no edge from {} to {}".format(start, end))

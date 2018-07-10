@@ -1,10 +1,16 @@
+"""
+Test module for evensplit.graph
+"""
+
 import unittest
 from src.graph import Graph
 
+# pylint: disable=R0904
 class TestGraph(unittest.TestCase):
     """
     Test the graph structure containing the people and their transactions.
     """
+
     def test_add_node_size(self):
         """
         Test the success of adding a new node to the graph using the size
@@ -39,7 +45,7 @@ class TestGraph(unittest.TestCase):
         g.add_node("B")
         g.add_node("C")
         self.assertEqual(repr(g), correct)
-        
+
     def test_add_node_duplicate(self):
         """
         Test that an exception is thrown when adding two nodes with the same
@@ -198,7 +204,6 @@ class TestGraph(unittest.TestCase):
             g.set_weight("A", "B", 1.51)
         self.assertIn("edge", str(context.exception))
 
-
     def test_add_weight(self):
         """
         Test updating the weight of an edge between two nodes.
@@ -259,4 +264,3 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(next(i), "B")
         self.assertEqual(next(i), "C")
         self.assertEqual(next(i), "D")
-

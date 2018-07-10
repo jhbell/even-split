@@ -1,6 +1,12 @@
+"""
+The evensplit module simplifies the number of transactions between a number of
+people to the minimum number required for everyone to get paid back.
+"""
+
 from typing import IO
 from sys import stdin
 from src.graph import Graph
+
 
 class EvenSplit():
     """
@@ -8,6 +14,7 @@ class EvenSplit():
     transactions, and reducing the graph into the minimum number of
     transactions.
     """
+
     def __init__(self):
         """
         Construct a new EvenSplit instance.
@@ -57,13 +64,13 @@ class EvenSplit():
         """
         return self.graph.size()
 
-    def print(self, out: IO[str]=stdin):
+    def print(self, out: IO[str] = stdin):
         """
-        Print the state of the split as transactions from one 
+        Print the state of the split as transactions from one
         person to another.
         """
         out.write("Here's how to get even:\n")
         for person in self.graph:
             for other in self.graph[person]:
                 amount = "${:,.2f}".format(self.graph[person][other])
-                out.write(person + " pays " +  other + " " + amount + "\n")
+                out.write(person + " pays " + other + " " + amount + "\n")
