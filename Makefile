@@ -8,8 +8,8 @@ coverage:
 	coverage report
 
 style:
-	- pylint src
-	- pylint test
+	pylint src
+	pylint test
 
 format:
 	autopep8 -i src/*.py
