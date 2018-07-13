@@ -8,7 +8,6 @@ jobs:
   include:
     - stage: testing
       script: make coverage
+      after_success: coveralls
     - stage: style
       script: make style
-after_success:
-  - coveralls
