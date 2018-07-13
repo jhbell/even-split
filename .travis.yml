@@ -3,8 +3,12 @@ python:
   - "3.6"
 install:
   - make install
-# Run the tests
-script:
-  - make test
+# Run the style and unit tests
+jobs:
+  include:
+    - stage: testing
+      script: make coverage
+    - stage: style
+      script: make style
 after_success:
   - coveralls
