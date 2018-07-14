@@ -77,7 +77,7 @@ class TestEvenSplit(unittest.TestCase):
 
     def test_repr(self):
         """
-        Test the correctness of the __repr__ function.
+        Test the correctness of the __repr__ method.
         """
         correct = "{'John': {'Sara': 0.0}, 'Sara': {'John': 0.0}}"
         es = EvenSplit()
@@ -85,9 +85,22 @@ class TestEvenSplit(unittest.TestCase):
         es.add_person("Sara")
         self.assertEqual(repr(es), correct)
 
+    def test_read(self):
+        """
+        Test the correctness of the read() method.
+        """
+        i = ("4\nJohn\nSara\nCole\nAnne\n1\nSara 4.00\n")
+        correct = ("{'John': {'Sara': 1.0, 'Cole': 0.0, 'Anne': 0.0}, "
+                   "'Sara': {'John': 0.0, 'Cole': 0.0, 'Anne': 0.0}, "
+                   "'Cole': {'John': 0.0, 'Sara': 1.0, 'Anne': 0.0}, "
+                   "'Anne': {'John': 0.0, 'Sara': 1.0, 'Cole': 0.0}}")
+        es = EvenSplit()
+        es.read(StringIO(i))
+        self.assertEqual(repr(es), correct)
+
     def test_print(self):
         """
-        Test the correctness of the print function.
+        Test the correctness of the print method.
         """
         correct = ("Here's how to get even:\nJohn pays Sara $2.00\n"
                    "Sara pays John $0.00\n")

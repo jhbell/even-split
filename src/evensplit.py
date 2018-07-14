@@ -4,7 +4,7 @@ people to the minimum number required for everyone to get paid back.
 """
 
 from typing import IO
-from sys import stdin
+from sys import stdin, stdout
 from src.graph import Graph
 
 
@@ -64,7 +64,21 @@ class EvenSplit():
         """
         return self.graph.size()
 
-    def print(self, out: IO[str] = stdin):
+    def read(self, i: IO[str] = stdin):
+        """
+        Read in the people and their transactions and construct the graph
+        with the input.
+        """
+        num_users = int(next(i))
+        for _ in range(num_users):
+            self.add_person(next(i).strip())
+
+        num_transactions = int(next(i))
+        for _ in range(num_transactions):
+            line = next(i).split()
+            self.add_transaction(line[0], float(line[1]))
+
+    def print(self, out: IO[str] = stdout):
         """
         Print the state of the split as transactions from one
         person to another.
